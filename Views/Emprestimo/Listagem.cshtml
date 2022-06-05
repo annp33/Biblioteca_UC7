@@ -38,15 +38,27 @@
                 <tbody>
                     @foreach(Emprestimo e in Model)
                     {
-                    <tr>
-                        <td>@e.Id</td>
-                        <td>@e.NomeUsuario</td>
-                        <td>@e.DataEmprestimo.ToString("dd/MM/yyyy")</td>
-                        <td>@e.DataDevolucao.ToString("dd/MM/yyyy")</td>
-                        <td>@e.Livro.Titulo</td>
-                        <td>@e.Livro.Autor</td>
-                        <td><a href="/Emprestimo/Edicao/@e.Id">Editar</a></td>
-                    </tr>
+                        @if(DateTime.Now - e.DataEmprestimo > e.DataDevolucao - e.DataEmprestimo){
+                            <tr class="table-danger">                        
+                                <td>@e.Id</td>
+                                <td>@e.NomeUsuario</td>
+                                <td>@e.DataEmprestimo.ToString("dd/MM/yyyy")</td>
+                                <td>@e.DataDevolucao.ToString("dd/MM/yyyy")</td>
+                                <td>@e.Livro.Titulo</td>
+                                <td>@e.Livro.Autor</td>
+                                <td><a href="/Emprestimo/Edicao/@e.Id">Editar</a></td> 
+                            </tr>
+                        }else{
+                            <tr>                        
+                                <td>@e.Id</td>
+                                <td>@e.NomeUsuario</td>
+                                <td>@e.DataEmprestimo.ToString("dd/MM/yyyy")</td>
+                                <td>@e.DataDevolucao.ToString("dd/MM/yyyy")</td>
+                                <td>@e.Livro.Titulo</td>
+                                <td>@e.Livro.Autor</td>
+                                <td><a href="/Emprestimo/Edicao/@e.Id">Editar</a></td> 
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>
